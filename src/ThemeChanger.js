@@ -1,21 +1,23 @@
 import React, { useState, useContext } from 'react'
 import { ThemeContext } from "./themeContext"
 
-
 export default function ThemeChanger() {
     const [header, setHeader] = useState("");
     const [fotter, setFotter] = useState("");
+    const [text, setText] = useState("");
 
-    const { ThemeSelecter } = useContext(ThemeContext)
-
+    const { ThemeSelecter, CustomThemeSelecter } = useContext(ThemeContext)
 
     const themeChangehandler = (e) => {
         ThemeSelecter(e.target.value);
     }
 
-    const onSubmithandler = (e) => {
-        console.log(header);
-        console.log(fotter);
+    const onSubmithandler = () => {
+        CustomThemeSelecter({
+            headerBackgroundColor: header,
+            fotterBackgroundColor: fotter,
+            color: text
+        });
     }
 
     return (
@@ -35,6 +37,10 @@ export default function ThemeChanger() {
             <label>
                 Fotter Color:
                 <input type="text" value={fotter} onChange={(e) => setFotter(e.target.value.trim())} />
+            </label>
+            <label>
+                text Color:
+                <input type="text" value={text} onChange={(e) => setText(e.target.value.trim())} />
             </label>
             <input type="submit" onClick={onSubmithandler} />
         </>

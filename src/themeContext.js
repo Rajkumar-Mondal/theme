@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
 const themes = {
     dark: {
@@ -26,31 +26,36 @@ const themes = {
 const initialState = {
     theme: themes.light,
     ThemeSelecter: () => { },
+    CustomThemeSelecter: () => { },
 };
 
-const ThemeContext = React.createContext(initialState);
+const ThemeContext = createContext(initialState);
 
 function ThemeProvider({ children }) {
-    
+
     const [theme, setTheme] = useState(themes.light);
 
     const ThemeSelecter = (color) => {
         // setTheme(themes.color);
-        if(color==="dark"){
+        if (color === "dark") {
             setTheme(themes.dark);
-        } else if (color==="light") {
+        } else if (color === "light") {
             setTheme(themes.light);
-        } else if (color==="primaryTheme") {
+        } else if (color === "primaryTheme") {
             setTheme(themes.primaryTheme);
-        } else if (color==="secondaryTheme") {
+        } else if (color === "secondaryTheme") {
             setTheme(themes.secondaryTheme);
         } else {
             setTheme(themes.light);
         }
     }
 
+    const CustomThemeSelecter = (CustomThemeSelecter) => {
+        setTheme(CustomThemeSelecter);
+    }
+
     return (
-        <ThemeContext.Provider value={{ theme, ThemeSelecter }}>
+        <ThemeContext.Provider value={{ theme, ThemeSelecter, CustomThemeSelecter }}>
             {children}
         </ThemeContext.Provider>
     );
