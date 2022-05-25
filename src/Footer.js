@@ -1,5 +1,7 @@
 import React from "react";
 import { ThemeContext } from "./themeContext";
+
+
 function Footer() {
     const { theme } = React.useContext(ThemeContext)
     return (

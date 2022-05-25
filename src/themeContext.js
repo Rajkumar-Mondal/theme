@@ -25,70 +25,32 @@ const themes = {
 
 const initialState = {
     theme: themes.light,
-    Dark: () => { },
-    light: () => { },
-    Primarytheme: () => { },
-    Secondarytheme: () => { },
-
+    ThemeSelecter: () => { },
 };
+
 const ThemeContext = React.createContext(initialState);
 
 function ThemeProvider({ children }) {
-    const [dark, setDark] = useState(false); 
-    const [light, setLight] = useState(false); 
-    const [primary, setPrimaryTheme] = useState(false); 
-    const [secondary, setSecondary] = useState(false); 
-
-    const Dark = () => {
-        setLight(false);
-        setPrimaryTheme(false);
-        setSecondary(false);
-        setDark(true);
-    };
-
-    const Light = () => {
-        setPrimaryTheme(false);
-        setSecondary(false);
-        setDark(false);
-        setLight(true);
-    };
     
-    const Primarytheme = () => {
-        setSecondary(false);
-        setDark(false);
-        setLight(false);
-        setPrimaryTheme(true);
-    };
-    
-    const Secondarytheme = () => {
-        setPrimaryTheme(false);
-        setDark(false);
-        setLight(false);
-        setSecondary(true);
-    };
+    const [theme, setTheme] = useState(themes.light);
 
-    const themeChecker = () => {
-        if (dark) {
-            return themes.dark
-        } else if (primary) {
-            return themes.primaryTheme
-        } else if (secondary) {
-            return themes.secondaryTheme
-        } else if (light) {
-            return themes.light
+    const ThemeSelecter = (color) => {
+        // setTheme(themes.color);
+        if(color==="dark"){
+            setTheme(themes.dark);
+        } else if (color==="light") {
+            setTheme(themes.light);
+        } else if (color==="primaryTheme") {
+            setTheme(themes.primaryTheme);
+        } else if (color==="secondaryTheme") {
+            setTheme(themes.secondaryTheme);
         } else {
-            return themes.light
+            setTheme(themes.light);
         }
     }
 
-    const theme = themeChecker();
-    
-
-
     return (
-        <ThemeContext.Provider
-            value={{ theme , Dark , Light , Primarytheme , Secondarytheme}}
-        >
+        <ThemeContext.Provider value={{ theme, ThemeSelecter }}>
             {children}
         </ThemeContext.Provider>
     );

@@ -2,7 +2,6 @@ import React from "react";
 import { ThemeContext } from "./themeContext";
 import ThemeChanger from "./ThemeChanger"
 
-
 function Header() {
     const { theme } = React.useContext(ThemeContext)
     return (

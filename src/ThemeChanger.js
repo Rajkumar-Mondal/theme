@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { ThemeContext } from "./themeContext"
 
 
 export default function ThemeChanger() {
-    const { Dark , Primarytheme , Secondarytheme , Light} = React.useContext(ThemeContext)
-    const themeChangehandler=(e) => {
-        console.log(e.target.value);
-        if(e.target.value==="dark"){
-            Dark();
-        } else if (e.target.value==="primaryTheme") {
-            Primarytheme();
-        } else if (e.target.value==="secondaryTheme") {
-            Secondarytheme();
-        } else {
-            Light();
-        }
+    const [header, setHeader] = useState("");
+    const [fotter, setFotter] = useState("");
+
+    const { ThemeSelecter } = useContext(ThemeContext)
+
+
+    const themeChangehandler = (e) => {
+        ThemeSelecter(e.target.value);
+    }
+
+    const onSubmithandler = (e) => {
+        console.log(header);
+        console.log(fotter);
     }
 
     return (
@@ -26,6 +27,16 @@ export default function ThemeChanger() {
                 <option value="primaryTheme">Primary Theme</option>
                 <option value="secondaryTheme">Secondary Theme</option>
             </select>
-        </> 
+            <h1>Custom Themes:</h1>
+            <label>
+                Header Color:
+                <input type="text" value={header} onChange={(e) => setHeader(e.target.value.trim())} />
+            </label>
+            <label>
+                Fotter Color:
+                <input type="text" value={fotter} onChange={(e) => setFotter(e.target.value.trim())} />
+            </label>
+            <input type="submit" onClick={onSubmithandler} />
+        </>
     )
 }
