@@ -3,17 +3,17 @@ import { ThemeContext } from "./themeContext"
 
 
 export default function ThemeChanger() {
-    const { toggleDark , togglePrimarytheme , toggleSecondarytheme , togglelight} = React.useContext(ThemeContext)
+    const { Dark , Primarytheme , Secondarytheme , Light} = React.useContext(ThemeContext)
     const themeChangehandler=(e) => {
         console.log(e.target.value);
         if(e.target.value==="dark"){
-            toggleDark();
+            Dark();
         } else if (e.target.value==="primaryTheme") {
-            togglePrimarytheme();
+            Primarytheme();
         } else if (e.target.value==="secondaryTheme") {
-            toggleSecondarytheme();
+            Secondarytheme();
         } else {
-            togglelight();
+            Light();
         }
     }
 

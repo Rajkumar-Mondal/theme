@@ -25,10 +25,10 @@ const themes = {
 
 const initialState = {
     theme: themes.light,
-    toggleDark: () => { },
-    togglelight: () => { },
-    togglePrimarytheme: () => { },
-    toggleSecondarytheme: () => { },
+    Dark: () => { },
+    light: () => { },
+    Primarytheme: () => { },
+    Secondarytheme: () => { },
 
 };
 const ThemeContext = React.createContext(initialState);
@@ -39,28 +39,28 @@ function ThemeProvider({ children }) {
     const [primary, setPrimaryTheme] = useState(false); 
     const [secondary, setSecondary] = useState(false); 
 
-    const toggleDark = () => {
+    const Dark = () => {
         setLight(false);
         setPrimaryTheme(false);
         setSecondary(false);
         setDark(true);
     };
 
-    const togglelight = () => {
+    const Light = () => {
         setPrimaryTheme(false);
         setSecondary(false);
         setDark(false);
         setLight(true);
     };
     
-    const togglePrimarytheme = () => {
+    const Primarytheme = () => {
         setSecondary(false);
         setDark(false);
         setLight(false);
         setPrimaryTheme(true);
     };
     
-    const toggleSecondarytheme = () => {
+    const Secondarytheme = () => {
         setPrimaryTheme(false);
         setDark(false);
         setLight(false);
@@ -87,7 +87,7 @@ function ThemeProvider({ children }) {
 
     return (
         <ThemeContext.Provider
-            value={{ theme , toggleDark , togglelight , togglePrimarytheme , toggleSecondarytheme}}
+            value={{ theme , Dark , Light , Primarytheme , Secondarytheme}}
         >
             {children}
         </ThemeContext.Provider>
