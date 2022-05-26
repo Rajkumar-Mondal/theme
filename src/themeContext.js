@@ -32,22 +32,11 @@ const initialState = {
 const ThemeContext = createContext(initialState);
 
 function ThemeProvider({ children }) {
-
     const [theme, setTheme] = useState(themes.light);
 
     const ThemeSelecter = (color) => {
-        // setTheme(themes.color);
-        if (color === "dark") {
-            setTheme(themes.dark);
-        } else if (color === "light") {
-            setTheme(themes.light);
-        } else if (color === "primaryTheme") {
-            setTheme(themes.primaryTheme);
-        } else if (color === "secondaryTheme") {
-            setTheme(themes.secondaryTheme);
-        } else {
-            setTheme(themes.light);
-        }
+        setTheme(themes[color]);
+        
     }
 
     const CustomThemeSelecter = (CustomThemeSelecter) => {
